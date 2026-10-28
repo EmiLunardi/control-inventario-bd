@@ -1,0 +1,189 @@
+@{
+    ViewData["Title"] = "Registro de Movimientos de Stock";
+}
+
+<div class="container-fluid mt-3">
+    <div class="mb-4">
+        <h2 class="mb-0">Registro y Auditoría de Movimientos de Stock</h2>
+        <small class="text-muted">Formulario operativo para asentar entradas, salidas y ajustes de inventario por sucursal</small>
+    </div>
+
+    <div class="row g-4">
+        <!-- Columna Izquierda: Formulario de Nuevo Movimiento -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Registrar Nuevo Movimiento</h5>
+                </div>
+                <div class="card-body">
+                    <form onsubmit="event.preventDefault(); alert('Movimiento de stock registrado y auditado correctamente.');">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Tipo de Operación</label>
+                            <select class="form-select" required>
+                                <option value="ENTRADA">ENTRADA (Ingreso / Recepción de Compra)</option>
+                                <option value="SALIDA">SALIDA (Venta / Despacho a Cliente)</option>
+                                <option value="AJUSTE">AJUSTE (Corrección por Inventario Físico)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Sucursal Operativa</label>
+                            <select class="form-select" required>
+                                <option value="1">Central (Av. Corrientes 1234, CABA)</option>
+                                <option value="2">Sucursal Norte (Av. Cabildo 4500, CABA)</option>
+                                <option value="3">Sucursal Sur (Av. Mitre 500, Avellaneda)</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Producto</label>
+                            <select class="form-select" required>
+                                <option value="1">SKU-BEB-001 - Agua Mineral 1.5L</option>
+                                <option value="2">SKU-BEB-002 - Cerveza Lager 1L</option>
+                                <option value="3">SKU-ALM-001 - Arroz Blanco 1kg</option>
+                                <option value="4">SKU-ALM-002 - Fideos Espagueti 500g</option>
+                                <option value="5">SKU-LAC-001 - Leche Entera 1L</option>
+                                <option value="6">SKU-LIM-001 - Lavandina Concentrada 1L</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Cantidad de Unidades</label>
+                            <input type="number" min="1" class="form-control" placeholder="Ej: 50" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Motivo / Comprobante Asociado</label>
+                            <textarea class="form-control" rows="2" placeholder="Ej: Remito N° 0004-00018290 o Factura de Venta" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Confirmar Movimiento</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Historial y Existencias por Sucursal -->
+        <div class="col-lg-8">
+            <!-- Stock desglosado por Sucursal (Entidad StockSucursales) -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Existencias Actuales por Sucursal (StockSucursales)</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Sucursal</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad Actual</th>
+                                    <th>Punto de Reorden</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Central</td>
+                                    <td>Agua Mineral 1.5L</td>
+                                    <td>90 u.</td>
+                                    <td>30 u.</td>
+                                    <td><span class="badge bg-success">Óptimo</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sucursal Norte</td>
+                                    <td>Agua Mineral 1.5L</td>
+                                    <td>60 u.</td>
+                                    <td>20 u.</td>
+                                    <td><span class="badge bg-success">Óptimo</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Sucursal Sur</td>
+                                    <td>Cerveza Lager 1L</td>
+                                    <td>10 u.</td>
+                                    <td>40 u.</td>
+                                    <td><span class="badge bg-danger">Reponer Urgente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Central</td>
+                                    <td>Leche Entera 1L</td>
+                                    <td>15 u.</td>
+                                    <td>50 u.</td>
+                                    <td><span class="badge bg-danger">Reponer Urgente</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabla de Auditoría de Movimientos Recientes -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Bitácora de Auditoría de Movimientos</h5>
+                    <span class="badge bg-info text-dark">Últimos registros</span>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha y Hora</th>
+                                    <th>Producto</th>
+                                    <th>Sucursal</th>
+                                    <th>Tipo</th>
+                                    <th>Cantidad</th>
+                                    <th>Usuario Auditor</th>
+                                    <th>Motivo / Ref.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#105</td>
+                                    <td>2026-10-28 14:20</td>
+                                    <td>Agua Mineral 1.5L</td>
+                                    <td>Central</td>
+                                    <td><span class="badge bg-success">ENTRADA</span></td>
+                                    <td class="fw-bold text-success">+100</td>
+                                    <td><code>admin</code></td>
+                                    <td>Recepción OC-2026-001</td>
+                                </tr>
+                                <tr>
+                                    <td>#104</td>
+                                    <td>2026-10-27 16:40</td>
+                                    <td>Cerveza Lager 1L</td>
+                                    <td>Sucursal Sur</td>
+                                    <td><span class="badge bg-danger">SALIDA</span></td>
+                                    <td class="fw-bold text-danger">-20</td>
+                                    <td><code>operador_sur</code></td>
+                                    <td>Despacho Pedido #4412</td>
+                                </tr>
+                                <tr>
+                                    <td>#103</td>
+                                    <td>2026-10-26 11:15</td>
+                                    <td>Leche Entera 1L</td>
+                                    <td>Sucursal Norte</td>
+                                    <td><span class="badge bg-warning text-dark">AJUSTE</span></td>
+                                    <td class="fw-bold text-danger">-5</td>
+                                    <td><code>gerente_log</code></td>
+                                    <td>Merma por rotura de envase</td>
+                                </tr>
+                                <tr>
+                                    <td>#102</td>
+                                    <td>2026-10-25 09:00</td>
+                                    <td>Arroz Blanco 1kg</td>
+                                    <td>Central</td>
+                                    <td><span class="badge bg-success">ENTRADA</span></td>
+                                    <td class="fw-bold text-success">+200</td>
+                                    <td><code>admin</code></td>
+                                    <td>Recepción OC-2026-002</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

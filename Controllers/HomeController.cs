@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace ControlInventario.Controllers
 {
-    [Authorize] // Requiere estar logueado para acceder al tablero
+    [Authorize] 
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -15,10 +15,27 @@ namespace ControlInventario.Controllers
             _logger = logger;
         }
 
+        // Prototipo 1: Tablero de Control Principal (con Semaforización y Drill-Down)
         public IActionResult Index()
         {
-            // La primera entrega solo evalúa el diseño de la UI.
-            // Aquí en un futuro se obtendrán los datos para el Tablero.
+            return View();
+        }
+
+        // Prototipo 2: Gestión de Productos y Catálogo (ABM sin Drill-Down)
+        public IActionResult Productos()
+        {
+            return View();
+        }
+
+        // Prototipo 3: Registro de Movimientos de Stock (Entradas / Salidas / Ajustes sin Drill-Down)
+        public IActionResult Movimientos()
+        {
+            return View();
+        }
+
+        // Prototipo 4: Gestión de Proveedores y Órdenes de Compra (sin Drill-Down)
+        public IActionResult ProveedoresOrdenes()
+        {
             return View();
         }
 

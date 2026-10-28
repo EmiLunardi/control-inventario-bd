@@ -1,0 +1,250 @@
+@{
+    ViewData["Title"] = "Proveedores y Órdenes de Compra";
+}
+
+<div class="container-fluid mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="mb-0">Gestión de Proveedores y Órdenes de Compra</h2>
+            <small class="text-muted">Abastecimiento de mercadería, directorio de proveedores y seguimiento de pedidos de reposición</small>
+        </div>
+        <div>
+            <button class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#modalNuevoProveedor">
+                + Nuevo Proveedor
+            </button>
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevaOrden">
+                + Emitir Orden de Compra
+            </button>
+        </div>
+    </div>
+
+    <!-- Sección 1: Directorio de Proveedores (Entidad Proveedores) -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Directorio de Proveedores Homologados</h5>
+            <span class="badge bg-light text-dark">4 Proveedores Activos</span>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-secondary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Razón Social</th>
+                            <th>CUIT</th>
+                            <th>Teléfono</th>
+                            <th>Email Comercial</th>
+                            <th>Dirección</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="fw-semibold">Distribuidora Quilmes S.A.</td>
+                            <td>30-54892104-9</td>
+                            <td>011-4321-8890</td>
+                            <td>ventas@distquilmes.com.ar</td>
+                            <td>Av. Calchaquí 3100, Quilmes</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="fw-semibold">Molinos del Sur S.R.L.</td>
+                            <td>30-61029384-2</td>
+                            <td>011-4582-1102</td>
+                            <td>pedidos@molinosdelsur.com.ar</td>
+                            <td>Ruta 205 Km 42, Ezeiza</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="fw-semibold">Lácteos La Serenísima S.A.</td>
+                            <td>30-50129381-7</td>
+                            <td>0800-555-5228</td>
+                            <td>mayoristas@laserenisima.com.ar</td>
+                            <td>Parque Industrial Gral. Rodríguez</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="fw-semibold">Química Limpia S.A.</td>
+                            <td>30-70918273-4</td>
+                            <td>011-4756-9012</td>
+                            <td>contacto@quimicalimpia.com.ar</td>
+                            <td>Calle 14 N° 850, San Martín</td>
+                            <td><span class="badge bg-success">Activo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección 2: Órdenes de Compra y Detalles (Entidades OrdenesCompra y DetallesOrdenCompra) -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Órdenes de Compra de Reposición</h5>
+            <span class="badge bg-light text-dark">Abastecimiento a Sucursales</span>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>N° Orden</th>
+                            <th>Proveedor</th>
+                            <th>Sucursal Destino</th>
+                            <th>Fecha Emisión</th>
+                            <th>Detalle de Ítems (DetallesOrdenCompra)</th>
+                            <th>Total Orden</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>OC-2026-001</code></td>
+                            <td>Distribuidora Quilmes S.A.</td>
+                            <td>Central</td>
+                            <td>2026-10-20</td>
+                            <td>100x Agua Mineral 1.5L ($520 c/u)</td>
+                            <td class="fw-bold">$52,000.00</td>
+                            <td><span class="badge bg-success">RECIBIDA</span></td>
+                            <td><button class="btn btn-sm btn-outline-secondary" disabled>Ingresada</button></td>
+                        </tr>
+                        <tr>
+                            <td><code>OC-2026-002</code></td>
+                            <td>Molinos del Sur S.R.L.</td>
+                            <td>Central</td>
+                            <td>2026-10-22</td>
+                            <td>200x Arroz Blanco 1kg ($780 c/u)</td>
+                            <td class="fw-bold">$156,000.00</td>
+                            <td><span class="badge bg-success">RECIBIDA</span></td>
+                            <td><button class="btn btn-sm btn-outline-secondary" disabled>Ingresada</button></td>
+                        </tr>
+                        <tr>
+                            <td><code>OC-2026-003</code></td>
+                            <td>Distribuidora Quilmes S.A.</td>
+                            <td>Sucursal Sur</td>
+                            <td>2026-10-28</td>
+                            <td>120x Cerveza Lager 1L ($1,650 c/u)</td>
+                            <td class="fw-bold">$198,000.00</td>
+                            <td><span class="badge bg-warning text-dark">PENDIENTE</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success" onclick="alert('Orden OC-2026-003 marcada como RECIBIDA. Se generó entrada de stock automáticamente.')">
+                                    Recibir Mercadería
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>OC-2026-004</code></td>
+                            <td>Lácteos La Serenísima S.A.</td>
+                            <td>Central</td>
+                            <td>2026-10-28</td>
+                            <td>80x Leche Entera 1L ($720 c/u)</td>
+                            <td class="fw-bold">$57,600.00</td>
+                            <td><span class="badge bg-warning text-dark">PENDIENTE</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-success" onclick="alert('Orden OC-2026-004 marcada como RECIBIDA. Se generó entrada de stock automáticamente.')">
+                                    Recibir Mercadería
+                                                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nuevo Proveedor -->
+<div class="modal fade" id="modalNuevoProveedor" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title">Dar de Alta Proveedor</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Razón Social</label>
+                    <input type="text" class="form-control" placeholder="Ej: Distribuidora Mayorista S.A." />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">CUIT</label>
+                    <input type="text" class="form-control" placeholder="30-XXXXXXXX-X" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" placeholder="011-XXXX-XXXX" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" placeholder="ventas@proveedor.com.ar" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="alert('Proveedor registrado en el catálogo.')">Guardar Proveedor</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Nueva Orden de Compra -->
+<div class="modal fade" id="modalNuevaOrden" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Emitir Orden de Compra de Reposición</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Proveedor</label>
+                        <select class="form-select">
+                            <option>Distribuidora Quilmes S.A.</option>
+                            <option>Molinos del Sur S.R.L.</option>
+                            <option>Lácteos La Serenísima S.A.</option>
+                            <option>Química Limpia S.A.</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Sucursal de Destino</label>
+                        <select class="form-select">
+                            <option>Central</option>
+                            <option>Sucursal Norte</option>
+                            <option>Sucursal Sur</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Producto a Reponer</label>
+                        <select class="form-select">
+                            <option>SKU-BEB-002 - Cerveza Lager 1L (Crítico)</option>
+                            <option>SKU-LAC-001 - Leche Entera 1L (Crítico)</option>
+                            <option>SKU-ALM-002 - Fideos Espagueti 500g (Advertencia)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Cantidad Solicitada</label>
+                        <input type="number" class="form-control" value="100" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Costo Unitario ($)</label>
+                        <input type="number" class="form-control" value="1650.00" />
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Observaciones</label>
+                        <input type="text" class="form-control" placeholder="Reposición urgente por quiebre de stock mínimo" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="alert('Orden de Compra emitida correctamente.')">Emitir Orden</button>
+            </div>
+        </div>
+    </div>
+</div>
