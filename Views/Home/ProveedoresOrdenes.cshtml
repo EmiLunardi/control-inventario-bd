@@ -1,35 +1,34 @@
 @{
-    ViewData["Title"] = "Proveedores y Órdenes de Compra";
+    ViewData["Title"] = "Proveedores y Compras";
 }
 
-<div class="container-fluid mt-3">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+<div class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
         <div>
-            <h2 class="mb-0">Gestión de Proveedores y Órdenes de Compra</h2>
-            <small class="text-muted">Abastecimiento de mercadería, directorio de proveedores y seguimiento de pedidos de reposición</small>
+            <h2 class="fw-bold mb-1">Proveedores y Órdenes de Compra</h2>
+            <p class="text-muted mb-0">Directorio de abastecedores y gestión de pedidos de reposición</p>
         </div>
-        <div>
-            <button class="btn btn-outline-dark me-2" data-bs-toggle="modal" data-bs-target="#modalNuevoProveedor">
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-dark rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalNuevoProveedor">
                 + Nuevo Proveedor
             </button>
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalNuevaOrden">
+            <button class="btn btn-primary rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#modalNuevaOrden">
                 + Emitir Orden de Compra
             </button>
         </div>
     </div>
 
-    <!-- Sección 1: Directorio de Proveedores (Entidad Proveedores) -->
-    <div class="card shadow-sm mb-4">
-        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Directorio de Proveedores Homologados</h5>
-            <span class="badge bg-light text-dark">4 Proveedores Activos</span>
+    <!-- Directorio de Proveedores -->
+    <div class="card mb-4">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-dark">Proveedores Homologados</h5>
+            <span class="badge bg-light text-secondary border">4 activos</span>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
-                    <thead class="table-secondary">
+                    <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Razón Social</th>
                             <th>CUIT</th>
                             <th>Teléfono</th>
@@ -40,7 +39,6 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
                             <td class="fw-semibold">Distribuidora Quilmes S.A.</td>
                             <td>30-54892104-9</td>
                             <td>011-4321-8890</td>
@@ -49,7 +47,6 @@
                             <td><span class="badge bg-success">Activo</span></td>
                         </tr>
                         <tr>
-                            <td>2</td>
                             <td class="fw-semibold">Molinos del Sur S.R.L.</td>
                             <td>30-61029384-2</td>
                             <td>011-4582-1102</td>
@@ -58,7 +55,6 @@
                             <td><span class="badge bg-success">Activo</span></td>
                         </tr>
                         <tr>
-                            <td>3</td>
                             <td class="fw-semibold">Lácteos La Serenísima S.A.</td>
                             <td>30-50129381-7</td>
                             <td>0800-555-5228</td>
@@ -67,7 +63,6 @@
                             <td><span class="badge bg-success">Activo</span></td>
                         </tr>
                         <tr>
-                            <td>4</td>
                             <td class="fw-semibold">Química Limpia S.A.</td>
                             <td>30-70918273-4</td>
                             <td>011-4756-9012</td>
@@ -81,74 +76,74 @@
         </div>
     </div>
 
-    <!-- Sección 2: Órdenes de Compra y Detalles (Entidades OrdenesCompra y DetallesOrdenCompra) -->
-    <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Órdenes de Compra de Reposición</h5>
-            <span class="badge bg-light text-dark">Abastecimiento a Sucursales</span>
+    <!-- Órdenes de Compra -->
+    <div class="card">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 text-dark">Órdenes de Compra</h5>
+            <span class="badge bg-light text-secondary border">Seguimiento de reposición</span>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
-                <table class="table table-striped align-middle mb-0">
-                    <thead class="table-light">
+                <table class="table table-hover align-middle mb-0">
+                    <thead>
                         <tr>
                             <th>N° Orden</th>
                             <th>Proveedor</th>
                             <th>Sucursal Destino</th>
                             <th>Fecha Emisión</th>
-                            <th>Detalle de Ítems (DetallesOrdenCompra)</th>
-                            <th>Total Orden</th>
+                            <th>Detalle del Pedido</th>
+                            <th>Total</th>
                             <th>Estado</th>
-                            <th>Acción</th>
+                            <th class="text-end">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><code>OC-2026-001</code></td>
-                            <td>Distribuidora Quilmes S.A.</td>
+                            <td class="fw-semibold">Distribuidora Quilmes S.A.</td>
                             <td>Central</td>
                             <td>2026-10-20</td>
-                            <td>100x Agua Mineral 1.5L ($520 c/u)</td>
+                            <td>100 u. Agua Mineral 1.5L</td>
                             <td class="fw-bold">$52,000.00</td>
-                            <td><span class="badge bg-success">RECIBIDA</span></td>
-                            <td><button class="btn btn-sm btn-outline-secondary" disabled>Ingresada</button></td>
+                            <td><span class="badge bg-success">Recibida</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-outline-secondary rounded-pill px-3" disabled>Completada</button></td>
                         </tr>
                         <tr>
                             <td><code>OC-2026-002</code></td>
-                            <td>Molinos del Sur S.R.L.</td>
+                            <td class="fw-semibold">Molinos del Sur S.R.L.</td>
                             <td>Central</td>
                             <td>2026-10-22</td>
-                            <td>200x Arroz Blanco 1kg ($780 c/u)</td>
+                            <td>200 u. Arroz Blanco 1kg</td>
                             <td class="fw-bold">$156,000.00</td>
-                            <td><span class="badge bg-success">RECIBIDA</span></td>
-                            <td><button class="btn btn-sm btn-outline-secondary" disabled>Ingresada</button></td>
+                            <td><span class="badge bg-success">Recibida</span></td>
+                            <td class="text-end"><button class="btn btn-sm btn-outline-secondary rounded-pill px-3" disabled>Completada</button></td>
                         </tr>
                         <tr>
                             <td><code>OC-2026-003</code></td>
-                            <td>Distribuidora Quilmes S.A.</td>
+                            <td class="fw-semibold">Distribuidora Quilmes S.A.</td>
                             <td>Sucursal Sur</td>
                             <td>2026-10-28</td>
-                            <td>120x Cerveza Lager 1L ($1,650 c/u)</td>
+                            <td>120 u. Cerveza Lager 1L</td>
                             <td class="fw-bold">$198,000.00</td>
-                            <td><span class="badge bg-warning text-dark">PENDIENTE</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-success" onclick="alert('Orden OC-2026-003 marcada como RECIBIDA. Se generó entrada de stock automáticamente.')">
+                            <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-success rounded-pill px-3" onclick="alert('Orden OC-2026-003 recibida correctamente.')">
                                     Recibir Mercadería
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td><code>OC-2026-004</code></td>
-                            <td>Lácteos La Serenísima S.A.</td>
+                            <td class="fw-semibold">Lácteos La Serenísima S.A.</td>
                             <td>Central</td>
                             <td>2026-10-28</td>
-                            <td>80x Leche Entera 1L ($720 c/u)</td>
+                            <td>80 u. Leche Entera 1L</td>
                             <td class="fw-bold">$57,600.00</td>
-                            <td><span class="badge bg-warning text-dark">PENDIENTE</span></td>
-                            <td>
-                                <button class="btn btn-sm btn-success" onclick="alert('Orden OC-2026-004 marcada como RECIBIDA. Se generó entrada de stock automáticamente.')">
+                            <td><span class="badge bg-warning text-dark">Pendiente</span></td>
+                            <td class="text-end">
+                                <button class="btn btn-sm btn-success rounded-pill px-3" onclick="alert('Orden OC-2026-004 recibida correctamente.')">
                                     Recibir Mercadería
-                                                                </button>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -161,32 +156,32 @@
 <!-- Modal Nuevo Proveedor -->
 <div class="modal fade" id="modalNuevoProveedor" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content border-0 shadow">
             <div class="modal-header bg-dark text-white">
-                <h5 class="modal-title">Dar de Alta Proveedor</h5>
+                <h5 class="modal-title">Registrar Proveedor</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-4">
                 <div class="mb-3">
-                    <label class="form-label">Razón Social</label>
+                    <label class="form-label fw-semibold">Razón Social</label>
                     <input type="text" class="form-control" placeholder="Ej: Distribuidora Mayorista S.A." />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">CUIT</label>
+                    <label class="form-label fw-semibold">CUIT</label>
                     <input type="text" class="form-control" placeholder="30-XXXXXXXX-X" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Teléfono</label>
+                    <label class="form-label fw-semibold">Teléfono</label>
                     <input type="text" class="form-control" placeholder="011-XXXX-XXXX" />
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">Email</label>
+                    <label class="form-label fw-semibold">Email</label>
                     <input type="email" class="form-control" placeholder="ventas@proveedor.com.ar" />
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="alert('Proveedor registrado en el catálogo.')">Guardar Proveedor</button>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-dark rounded-pill px-4" data-bs-dismiss="modal" onclick="alert('Proveedor registrado.')">Guardar</button>
             </div>
         </div>
     </div>
@@ -195,15 +190,15 @@
 <!-- Modal Nueva Orden de Compra -->
 <div class="modal fade" id="modalNuevaOrden" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-success text-white">
-                <h5 class="modal-title">Emitir Orden de Compra de Reposición</h5>
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Emitir Orden de Compra</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-4">
                 <div class="row g-3">
                     <div class="col-md-6">
-                        <label class="form-label">Proveedor</label>
+                        <label class="form-label fw-semibold">Proveedor</label>
                         <select class="form-select">
                             <option>Distribuidora Quilmes S.A.</option>
                             <option>Molinos del Sur S.R.L.</option>
@@ -212,7 +207,7 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Sucursal de Destino</label>
+                        <label class="form-label fw-semibold">Sucursal de Destino</label>
                         <select class="form-select">
                             <option>Central</option>
                             <option>Sucursal Norte</option>
@@ -220,30 +215,30 @@
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Producto a Reponer</label>
+                        <label class="form-label fw-semibold">Producto</label>
                         <select class="form-select">
-                            <option>SKU-BEB-002 - Cerveza Lager 1L (Crítico)</option>
-                            <option>SKU-LAC-001 - Leche Entera 1L (Crítico)</option>
-                            <option>SKU-ALM-002 - Fideos Espagueti 500g (Advertencia)</option>
+                            <option>Cerveza Lager 1L</option>
+                            <option>Leche Entera 1L</option>
+                            <option>Fideos Espagueti 500g</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Cantidad Solicitada</label>
+                        <label class="form-label fw-semibold">Cantidad</label>
                         <input type="number" class="form-control" value="100" />
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Costo Unitario ($)</label>
+                        <label class="form-label fw-semibold">Costo Unitario ($)</label>
                         <input type="number" class="form-control" value="1650.00" />
                     </div>
                     <div class="col-12">
-                        <label class="form-label">Observaciones</label>
-                        <input type="text" class="form-control" placeholder="Reposición urgente por quiebre de stock mínimo" />
+                        <label class="form-label fw-semibold">Observaciones</label>
+                        <input type="text" class="form-control" placeholder="Notas de entrega" />
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="alert('Orden de Compra emitida correctamente.')">Emitir Orden</button>
+            <div class="modal-footer bg-light">
+                <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary rounded-pill px-4" data-bs-dismiss="modal" onclick="alert('Orden de compra emitida.')">Emitir Orden</button>
             </div>
         </div>
     </div>
