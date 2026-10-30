@@ -48,5 +48,11 @@ namespace ControlInventario.Models
                 _ => "bg-success"
             };
         }
+
+        public double ObtenerPorcentajeSobreMinimo()
+        {
+            if (StockMinimo <= 0) return 100.0;
+            return Math.Round(((double)(StockActual - StockMinimo) / StockMinimo) * 100.0, 1);
+        }
     }
 }
